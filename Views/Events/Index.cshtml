@@ -1,0 +1,54 @@
+﻿@model List<Event>
+@{
+}
+
+<h2 class="text-center mb-5">List of Available Places</h2>
+
+<div class="row mb-5">
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Events" asp-action="Create">Search</a>
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>EventType</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>ReservationNo</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var Event in Model)
+        {
+            <tr>
+                <td>@Event.Id</td>
+                <td>@Event.Name</td>
+                <td>@Event.EventType</td>
+                <td>@Event.Location</td>
+                <td>@(Event.Price)$</td>
+                <td><img src="/Event's/@Event.ImageFileName"width="100" /></td>
+                <td>@Event.ReservationNo.ToString("MM/dd/yyyy")</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-primary btw-sm" asp-controller="Events" asp-action="Bookings"
+                       asp-route-id="@Event.Id">Reserve</a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
